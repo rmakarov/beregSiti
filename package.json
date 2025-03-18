@@ -1,0 +1,25 @@
+{
+    "name": "y",
+    "version": "1.0.0",
+    "description": "Site for Camping 'Bereg Siti'",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/rmakarov/beregSiti.git"
+    },
+    "keywords": [
+        "beregSiti"
+    ],
+    "author": "RMakarov",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/rmakarov/beregSiti/issues"
+    },
+    "homepage": "https://github.com/rmakarov/beregSiti#readme",
+    "devDependencies": {
+        "webpack": "^5.98.0"
+    }
+}
