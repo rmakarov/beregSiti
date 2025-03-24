@@ -1,0 +1,12 @@
+
+:root {
+    --white-color: #FFFFFF;
+    --yellow-light-color: #FFFFCC;
+    --blue-color : #00CCFF;
+    --green-color: #198754;
+    --green-light-color: #d1e7dd;
+    --black-color: #000000;
+
+    --header-bg-color: var(--blue-color);
+    --footer-bg-color: var(--green-color);
+}

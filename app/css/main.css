@@ -1,0 +1,25 @@
+@import 'variables.css';
+
+body {
+   margin: 0;
+   padding: 0;
+}
+
+header {
+    background-color: var(--header-bg-color);
+    color: var(--white-color);
+    height: 80px;
+}
+
+footer {
+    background-color: var(--footer-bg-color);
+    height: 100px;
+}
+
+.nav {
+    list-style: none;
+}
+
+.section {
+
+}
