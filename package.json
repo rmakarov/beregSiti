@@ -2,10 +2,15 @@
     "name": "y",
     "version": "1.0.0",
     "description": "Site for Camping 'Bereg Siti'",
-    "main": "index.js",
+    "main": "js/index.js",
     "scripts": {
+        "start": "npx webpack serve",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
+    "source": [
+        "app/js/main.js",
+        "app/static/index.html"
+    ],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/rmakarov/beregSiti.git"
@@ -20,6 +25,9 @@
     },
     "homepage": "https://github.com/rmakarov/beregSiti#readme",
     "devDependencies": {
-        "webpack": "^5.98.0"
+        "html-webpack-plugin": "^5.6.3",
+        "webpack": "^5.98.0",
+        "webpack-cli": "^6.0.1",
+        "webpack-dev-server": "^5.2.0"
     }
 }
