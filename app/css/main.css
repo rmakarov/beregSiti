@@ -1,6 +1,10 @@
 @import 'variables.css';
 
-body, main {
+html {
+    font-size: 14px;
+}
+
+body {
    margin: 0;
    padding: 0;
 }
@@ -9,25 +13,67 @@ header {
     background-color: var(--header-bg-color);
     color: var(--white-color);
     height: 80px;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
 }
 
 footer {
     background-color: var(--footer-bg-color);
+    color: var(--white-color);
     height: 100px;
+}
+
+.nav-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .nav {
     list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
 }
 
 section[class*="main-info"] {
+    color: var(--white-color);
     background-image: url("./../assets/img/background/sitBg.jpg");
     background-size: 100% 100%;
     -webkit-background-size: 100% 100%;
     -moz-background-size: 100% 100%;
     -o-background-size: 100% 100%;
+    height: 400px;
+    font-size: 2rem;
+}
+
+.main-info .main-info-header-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
 }
 
 .section {
+    text-align: center;
+    border: solid 1px var(--green-color);
+    border-radius: 6px;
+    margin: 3rem 3rem 0;
+    font-size: 1.5rem;
+}
 
+.section:last-child {
+    margin-bottom: 3rem;
 }
