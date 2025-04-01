@@ -1,7 +1,10 @@
 import '../css/main.css';
+import imagesJson from '../assets/img/gallery/gallery.json'
+
 
 function ready () {
     console.log('READY');
+    console.log('imagesJson: ', imagesJson)
 }
 
 function scrollToElement (elementId)  {
