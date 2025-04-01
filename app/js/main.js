@@ -46,7 +46,7 @@ function scrollToElement (elementId)  {
 function renderGallery() {
     const galleryContainer = document.getElementById('gallery-container');
 
-    VIEW_GALERY.forEach((imgName) => {
+    VIEW_GALERY.forEach((imgName, index) => {
         const galleryWrapper = document.createElement('div');
         galleryWrapper.className = 'gallery-icon-wrapper';
         const galleryImg = document.createElement('img');
@@ -61,9 +61,16 @@ function renderGallery() {
             e.target.width = initialWidth * scale;
             e.target.height = initialHeight * scale;
         };
+        galleryImg.addEventListener('click', () => {
+            showGalleryItem(imgName, index)
+        });
         galleryWrapper.append(galleryImg);
         galleryContainer.append(galleryWrapper);
     });
+}
+
+function showGalleryItem(imgName, index){
+    console.log('showGalleryItem', imgName, ' index: ', index);
 }
 
 
