@@ -77,3 +77,27 @@ section[class*="main-info"] {
 .section:last-child {
     margin-bottom: 3rem;
 }
+
+#gallery-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+
+}
+
+.gallery-icon-wrapper {
+    cursor: pointer;
+    border: solid 1px var(--green-color);
+    background-color: var(--green-light-color);
+    border-radius: 4px;
+    margin-top: 6px;
+    margin-left: 6px;
+    margin-right: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

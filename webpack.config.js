@@ -7,10 +7,6 @@ module.exports = {
     mode: mode,
     context: path.resolve(__dirname, 'app'),
     entry: './js/main.js',
-    output: {
-        filename: './js/main.js',
-        path: path.resolve(__dirname, 'dist'),
-    },
     module: {
         rules: [
             {
