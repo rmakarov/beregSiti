@@ -1,6 +1,14 @@
 @import 'variables.css';
 
+@font-face {
+    font-family: "Rubik", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    src: url('../assets/fonts/Rubik-Regular.ttf') format('ttf');
+}
+
 html {
+    font-family: "Rubik", sans-serif;
     font-size: 14px;
 }
 

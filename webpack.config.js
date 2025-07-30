@@ -14,6 +14,23 @@ module.exports = {
                 use: [ 'style-loader', 'css-loader'],
             },
             {
+                test: /\.(woff|woff2)$/,
+                use: {
+                    loader: 'url-loader',
+                },
+            },
+            {
+                test: /\.ttf$/,
+                use: [
+                    {
+                        loader: 'ttf-loader',
+                        options: {
+                            name: './font/[hash].[ext]',
+                        },
+                    },
+                ]
+            },
+            {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
                /* use: [
