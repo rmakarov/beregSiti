@@ -116,9 +116,9 @@ section[class*="main-info"] {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный чёрный фон */
-    backdrop-filter: blur(4px); /* Опционально: размытие фона */
-    display: flex;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex; /* можно оставить, но не обязательно */
     justify-content: center;
     align-items: center;
     opacity: 0;
@@ -130,6 +130,55 @@ section[class*="main-info"] {
 .modal.active {
     opacity: 1;
     visibility: visible;
+}
+
+.modalContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: auto;
+    z-index: 2;
+}
+
+.modalControls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 4;
+}
+
+.modalControlsLeft {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px; /* или как нужно */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+}
+
+.modalControlsRight {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
 }
 
 button:disabled {

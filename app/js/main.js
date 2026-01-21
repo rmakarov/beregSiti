@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', ready, false );
 
 
 function ready() {
-    console.log('!!! ready !!!')
     renderGallery();
 
     const navLinks = document.getElementsByClassName('nav-link');
@@ -51,7 +50,6 @@ function scrollToElement (elementId)  {
 }
 
 function renderGallery() {
-    console.log('!!! renderGallery !!!')
     const galleryContainer = document.getElementById('gallery-container');
 
     VIEW_GALERY.forEach((imgName, index) => {
@@ -148,7 +146,6 @@ function addModalContent(content) {
 function closeModal() {
     MODAL_CONTENT = DEFAULT_MODAL_CONTENT;
     const modal = document.querySelector('.modal');
-    console.log('closeModal modal: ', modal);
 
     modal.classList.remove('active');
 }
