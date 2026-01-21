@@ -17,11 +17,18 @@ import view14 from '../assets/img/gallery/gallery14.jpg'
 const GALLERY_ICON_WIDTH = 180;
 const GALLERY_ICON_HEIGHT = 136;
 const VIEW_GALERY = [view1, view2, view3, view4, view5, view6, view7, view8, view9, view10, view11, view12, view13, view14];
+const DEFAULT_MODAL_CONTENT = {
+    position: 0,
+    content: []
+}
+
+let MODAL_CONTENT = DEFAULT_MODAL_CONTENT
 
 document.addEventListener('DOMContentLoaded', ready, false );
 
 
 function ready() {
+    console.log('!!! ready !!!')
     renderGallery();
 
     const navLinks = document.getElementsByClassName('nav-link');
@@ -29,7 +36,7 @@ function ready() {
         navLink.addEventListener('click', (e) => {
             const anchor = e.target.getAttribute('data-anchor');
             scrollToElement(anchor);
-        })
+        });
     }
 }
 
@@ -44,6 +51,7 @@ function scrollToElement (elementId)  {
 }
 
 function renderGallery() {
+    console.log('!!! renderGallery !!!')
     const galleryContainer = document.getElementById('gallery-container');
 
     VIEW_GALERY.forEach((imgName, index) => {
@@ -70,7 +78,79 @@ function renderGallery() {
 }
 
 function showGalleryItem(imgName, index){
-    console.log('showGalleryItem', imgName, ' index: ', index);
+    MODAL_CONTENT = {
+        position: index,
+        content: VIEW_GALERY
+    }
+    showModal();
+}
+
+function showModal() {
+    const modal = document.querySelector('.modal');
+
+    createImageContent();
+
+    const closeModalButton = document.querySelector('.modalCloseButton');
+    const modalPrevButton = document.querySelector('.modalPrevButton');
+    const modalNextButton = document.querySelector('.modalNextButton');
+
+    modal.classList.add('active');
+
+    closeModalButton.addEventListener('click', (e) => {
+        closeModal();
+    });
+
+    enableModalControlsButtons(modalPrevButton, modalNextButton);
+
+    modalPrevButton.addEventListener('click', (e) => {
+        if( MODAL_CONTENT.position >= 0 ){
+            MODAL_CONTENT.position -=1;
+            createImageContent();
+            enableModalControlsButtons(modalPrevButton, modalNextButton);
+        }
+    });
+
+    modalNextButton.addEventListener('click', (e) => {
+        if( MODAL_CONTENT.position <= MODAL_CONTENT.content.length - 1 ){
+            MODAL_CONTENT.position +=1;
+            createImageContent();
+            enableModalControlsButtons(modalPrevButton, modalNextButton);
+        }
+    });
+}
+
+function enableModalControlsButtons(modalPrevButton, modalNextButton) {
+    if(modalPrevButton) {
+        modalPrevButton.disabled = (MODAL_CONTENT.position === 0);
+    }
+
+    if(modalNextButton) {
+        modalNextButton.disabled = (MODAL_CONTENT.position === MODAL_CONTENT.content.length-1);
+    }
+}
+
+function createImageContent() {
+    if(MODAL_CONTENT.content.length){
+        const imgContent = document.createElement('img');
+        imgContent.src = MODAL_CONTENT.content[MODAL_CONTENT.position];
+        addModalContent(imgContent);
+    }
+}
+
+function addModalContent(content) {
+    const modalContent = document.querySelector('.modalContent');
+    if (modalContent) {
+        modalContent.innerHTML = '';
+        modalContent.appendChild(content);
+    }
+}
+
+function closeModal() {
+    MODAL_CONTENT = DEFAULT_MODAL_CONTENT;
+    const modal = document.querySelector('.modal');
+    console.log('closeModal modal: ', modal);
+
+    modal.classList.remove('active');
 }
 
 
