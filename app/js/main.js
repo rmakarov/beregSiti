@@ -24,6 +24,10 @@ const DEFAULT_MODAL_CONTENT = {
 
 let MODAL_CONTENT = DEFAULT_MODAL_CONTENT
 
+let closeModalButton;
+let modalPrevButton;
+let modalNextButton;
+
 document.addEventListener('DOMContentLoaded', ready, false );
 
 
@@ -37,6 +41,34 @@ function ready() {
             scrollToElement(anchor);
         });
     }
+
+    initializeModalControls();
+}
+
+function initializeModalControls() {
+    closeModalButton = document.querySelector('.modalCloseButton');
+    modalPrevButton = document.querySelector('.modalPrevButton');
+    modalNextButton = document.querySelector('.modalNextButton');
+
+    closeModalButton.addEventListener('click', (e) => {
+        closeModal();
+    });
+
+    modalPrevButton.addEventListener('click', (e) => {
+        if( MODAL_CONTENT.position >= 0 ){
+            MODAL_CONTENT.position -=1;
+            createImageContent();
+            enableModalControlsButtons(modalPrevButton, modalNextButton);
+        }
+    });
+
+    modalNextButton.addEventListener('click', (e) => {
+        if( MODAL_CONTENT.position <= MODAL_CONTENT.content.length - 1 ) {
+            MODAL_CONTENT.position +=1;
+            createImageContent();
+            enableModalControlsButtons(modalPrevButton, modalNextButton);
+        }
+    });
 }
 
 function scrollToElement (elementId)  {
@@ -87,34 +119,9 @@ function showModal() {
     const modal = document.querySelector('.modal');
 
     createImageContent();
-
-    const closeModalButton = document.querySelector('.modalCloseButton');
-    const modalPrevButton = document.querySelector('.modalPrevButton');
-    const modalNextButton = document.querySelector('.modalNextButton');
-
+    document.body.classList.add('modal-open');
     modal.classList.add('active');
-
-    closeModalButton.addEventListener('click', (e) => {
-        closeModal();
-    });
-
     enableModalControlsButtons(modalPrevButton, modalNextButton);
-
-    modalPrevButton.addEventListener('click', (e) => {
-        if( MODAL_CONTENT.position >= 0 ){
-            MODAL_CONTENT.position -=1;
-            createImageContent();
-            enableModalControlsButtons(modalPrevButton, modalNextButton);
-        }
-    });
-
-    modalNextButton.addEventListener('click', (e) => {
-        if( MODAL_CONTENT.position <= MODAL_CONTENT.content.length - 1 ){
-            MODAL_CONTENT.position +=1;
-            createImageContent();
-            enableModalControlsButtons(modalPrevButton, modalNextButton);
-        }
-    });
 }
 
 function enableModalControlsButtons(modalPrevButton, modalNextButton) {
@@ -128,7 +135,7 @@ function enableModalControlsButtons(modalPrevButton, modalNextButton) {
 }
 
 function createImageContent() {
-    if(MODAL_CONTENT.content.length){
+    if(MODAL_CONTENT.content.length) {
         const imgContent = document.createElement('img');
         imgContent.src = MODAL_CONTENT.content[MODAL_CONTENT.position];
         addModalContent(imgContent);
@@ -146,6 +153,8 @@ function addModalContent(content) {
 function closeModal() {
     MODAL_CONTENT = DEFAULT_MODAL_CONTENT;
     const modal = document.querySelector('.modal');
+
+    document.body.classList.remove('modal-open');
 
     modal.classList.remove('active');
 }

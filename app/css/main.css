@@ -13,8 +13,13 @@ html {
 }
 
 body {
-   margin: 0;
-   padding: 0;
+    margin: 0;
+    padding: 0;
+    scrollbar-gutter: stable;
+}
+
+body.modal-open {
+    overflow: hidden;
 }
 
 header {
@@ -148,11 +153,11 @@ section[class*="main-info"] {
     top: 0;
     left: 0;
     width: 100%;
-    height: 60px;
+    height: auto;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 0 20px;
+    padding: 10px 20px;
     box-sizing: border-box;
     z-index: 4;
 }
@@ -181,9 +186,29 @@ section[class*="main-info"] {
     z-index: 3;
 }
 
+button:not(:disabled) {
+    cursor: pointer;
+}
+
 button:disabled {
     opacity: 0.6;
     filter: blur(1px);
     pointer-events: none; /* гарантирует, что клики игнорируются */
     cursor: not-allowed;
 }
+
+button.icon {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    font: inherit;
+    outline: none;
+}
+
+button.icon:focus-visible {
+    outline: 2px solid #005fcc; /* или другой цвет по вашему дизайну */
+    outline-offset: 2px;
+}
+
