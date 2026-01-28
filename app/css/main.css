@@ -99,7 +99,16 @@ section[class*="main-info"] {
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 20px;
+}
 
+#apartmens-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
 .gallery-icon-wrapper {
