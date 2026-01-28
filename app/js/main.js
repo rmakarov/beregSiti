@@ -1,37 +1,44 @@
 import '../css/main.css';
-import view1 from '../assets/img/gallery/gallery1.jpg'
-import view2 from '../assets/img/gallery/gallery2.jpg'
-import view3 from '../assets/img/gallery/gallery3.jpg'
-import view4 from '../assets/img/gallery/gallery4.jpg'
-import view5 from '../assets/img/gallery/gallery5.jpg'
-import view6 from '../assets/img/gallery/gallery6.jpg'
-import view7 from '../assets/img/gallery/gallery7.jpg'
-import view8 from '../assets/img/gallery/gallery8.jpg'
-import view9 from '../assets/img/gallery/gallery9.jpg'
-import view10 from '../assets/img/gallery/gallery10.jpg'
-import view11 from '../assets/img/gallery/gallery11.jpg'
-import view12 from '../assets/img/gallery/gallery12.jpg'
-import view13 from '../assets/img/gallery/gallery13.jpg'
-import view14 from '../assets/img/gallery/gallery14.jpg'
+import Modal from './Modal';
+import view1 from '../assets/img/gallery/gallery1.jpg';
+import view2 from '../assets/img/gallery/gallery2.jpg';
+import view3 from '../assets/img/gallery/gallery3.jpg';
+import view4 from '../assets/img/gallery/gallery4.jpg';
+import view5 from '../assets/img/gallery/gallery5.jpg';
+import view6 from '../assets/img/gallery/gallery6.jpg';
+import view7 from '../assets/img/gallery/gallery7.jpg';
+import view8 from '../assets/img/gallery/gallery8.jpg';
+import view9 from '../assets/img/gallery/gallery9.jpg';
+import view10 from '../assets/img/gallery/gallery10.jpg';
+import view11 from '../assets/img/gallery/gallery11.jpg';
+import view12 from '../assets/img/gallery/gallery12.jpg';
+import view13 from '../assets/img/gallery/gallery13.jpg';
+import view14 from '../assets/img/gallery/gallery14.jpg';
 
+import house1 from '../assets/img/apartmens/house1.jpg';
+import house2 from '../assets/img/apartmens/house1.jpg';
+import house1wiew1 from '../assets/img/apartmens/house1view/house1_view1.jpg';
+import house1wiew2 from '../assets/img/apartmens/house1view/house1_view2.jpg';
+import house1wiew3 from '../assets/img/apartmens/house1view/house1_view3.jpg';
+import house1wiew4 from '../assets/img/apartmens/house1view/house1_view4.jpg';
+import house1wiew5 from '../assets/img/apartmens/house1view/house1_view5.jpg';
+
+import house2wiew1 from '../assets/img/apartmens/house2view/house2_view1.jpg';
+import house2wiew2 from '../assets/img/apartmens/house2view/house2_view2.jpg';
+import house2wiew3 from '../assets/img/apartmens/house2view/house2_view3.jpg';
+import house2wiew4 from '../assets/img/apartmens/house2view/house2_view4.jpg';
+
+let modal = null;
 const GALLERY_ICON_WIDTH = 180;
 const GALLERY_ICON_HEIGHT = 136;
 const VIEW_GALERY = [view1, view2, view3, view4, view5, view6, view7, view8, view9, view10, view11, view12, view13, view14];
-const DEFAULT_MODAL_CONTENT = {
-    position: 0,
-    content: []
-}
-
-let MODAL_CONTENT = DEFAULT_MODAL_CONTENT
-
-let closeModalButton;
-let modalPrevButton;
-let modalNextButton;
+const HOUSE1_WIEW = [house1wiew1, house1wiew2, house1wiew3, house1wiew4, house1wiew5 ];
+const HOUSE2_WIEW = [house2wiew1, house2wiew2, house2wiew3, house2wiew4 ];
 
 document.addEventListener('DOMContentLoaded', ready, false );
 
-
 function ready() {
+    modal = new Modal();
     renderGallery();
 
     const navLinks = document.getElementsByClassName('nav-link');
@@ -42,33 +49,6 @@ function ready() {
         });
     }
 
-    initializeModalControls();
-}
-
-function initializeModalControls() {
-    closeModalButton = document.querySelector('.modalCloseButton');
-    modalPrevButton = document.querySelector('.modalPrevButton');
-    modalNextButton = document.querySelector('.modalNextButton');
-
-    closeModalButton.addEventListener('click', (e) => {
-        closeModal();
-    });
-
-    modalPrevButton.addEventListener('click', (e) => {
-        if( MODAL_CONTENT.position >= 0 ){
-            MODAL_CONTENT.position -=1;
-            createImageContent();
-            enableModalControlsButtons(modalPrevButton, modalNextButton);
-        }
-    });
-
-    modalNextButton.addEventListener('click', (e) => {
-        if( MODAL_CONTENT.position <= MODAL_CONTENT.content.length - 1 ) {
-            MODAL_CONTENT.position +=1;
-            createImageContent();
-            enableModalControlsButtons(modalPrevButton, modalNextButton);
-        }
-    });
 }
 
 function scrollToElement (elementId)  {
@@ -108,55 +88,8 @@ function renderGallery() {
 }
 
 function showGalleryItem(imgName, index){
-    MODAL_CONTENT = {
-        position: index,
-        content: VIEW_GALERY
-    }
-    showModal();
-}
-
-function showModal() {
-    const modal = document.querySelector('.modal');
-
-    createImageContent();
-    document.body.classList.add('modal-open');
-    modal.classList.add('active');
-    enableModalControlsButtons(modalPrevButton, modalNextButton);
-}
-
-function enableModalControlsButtons(modalPrevButton, modalNextButton) {
-    if(modalPrevButton) {
-        modalPrevButton.disabled = (MODAL_CONTENT.position === 0);
-    }
-
-    if(modalNextButton) {
-        modalNextButton.disabled = (MODAL_CONTENT.position === MODAL_CONTENT.content.length-1);
-    }
-}
-
-function createImageContent() {
-    if(MODAL_CONTENT.content.length) {
-        const imgContent = document.createElement('img');
-        imgContent.src = MODAL_CONTENT.content[MODAL_CONTENT.position];
-        addModalContent(imgContent);
-    }
-}
-
-function addModalContent(content) {
-    const modalContent = document.querySelector('.modalContent');
-    if (modalContent) {
-        modalContent.innerHTML = '';
-        modalContent.appendChild(content);
-    }
-}
-
-function closeModal() {
-    MODAL_CONTENT = DEFAULT_MODAL_CONTENT;
-    const modal = document.querySelector('.modal');
-
-    document.body.classList.remove('modal-open');
-
-    modal.classList.remove('active');
+    modal.setModalContent(index, VIEW_GALERY);
+    modal.showModal();
 }
 
 
