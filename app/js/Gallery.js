@@ -12,10 +12,17 @@ import view11 from "../assets/img/gallery/gallery11.jpg";
 import view12 from "../assets/img/gallery/gallery12.jpg";
 import view13 from "../assets/img/gallery/gallery13.jpg";
 import view14 from "../assets/img/gallery/gallery14.jpg";
+import view15 from "../assets/img/gallery/gallery15.jpg";
+import view16 from "../assets/img/gallery/gallery16.jpg";
+import view17 from "../assets/img/gallery/gallery17.jpg";
+import view18 from "../assets/img/gallery/gallery18.jpg";
+import view19 from "../assets/img/gallery/gallery19.jpg";
+import view20 from "../assets/img/gallery/gallery20.jpg";
 
 const GALLERY_ICON_WIDTH = 180;
 const GALLERY_ICON_HEIGHT = 136;
-const VIEW_GALERY = [view1, view2, view3, view4, view5, view6, view7, view8, view9, view10, view11, view12, view13, view14];
+const VIEW_GALERY = [view1, view2, view3, view4, view5, view6, view7, view8, view9, view10, view11, view12, view13, view14,
+    view15, view16, view17, view18, view19, view20];
 
 class Gallery {
     constructor(modal) {
@@ -42,7 +49,6 @@ class Gallery {
             galleryWrapper.append(galleryImg);
             this.galleryContainer.append(galleryWrapper);
         });
-
     }
 
     showGalleryItem(imgName, index) {

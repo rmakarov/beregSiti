@@ -3,12 +3,9 @@ import Modal from './Modal';
 import Gallery from './Gallery';
 import Apartmens from './Apartmens';
 
-
-
 let modal = null;
 let galery = null;
 let apartmens = null;
-
 
 document.addEventListener('DOMContentLoaded', ready, false );
 
