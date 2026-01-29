@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlBundlerPlugin = require('html-bundler-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const mode = process.env.NODE_ENV || 'development'
 
 module.exports = {
@@ -14,30 +15,15 @@ module.exports = {
                 use: [ 'style-loader', 'css-loader'],
             },
             {
-                test: /\.(woff|woff2)$/,
-                use: {
-                    loader: 'url-loader',
+                test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'fonts/[name][ext]',
                 },
-            },
-            {
-                test: /\.ttf$/,
-                use: [
-                    {
-                        loader: 'ttf-loader',
-                        options: {
-                            name: './font/[hash].[ext]',
-                        },
-                    },
-                ]
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
-               /* use: [
-                    {
-                        loader: 'file-loader',
-                    },
-                ],*/
                 generator: {
                     // keep original filenames and copy images to `dist/img/`
                     filename: 'img/[name][ext]',
@@ -65,6 +51,14 @@ module.exports = {
                  filename: 'css/main.css', // CSS output filename
              },
          }),*/
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: 'assets/favicon',
+                    to: 'favicon'
+                }
+            ]
+        }),
        new HtmlWebpackPlugin({
             template: './index.html',
             filename: './index.html',
