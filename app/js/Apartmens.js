@@ -1,3 +1,4 @@
+import * as domUtils  from './domUtils';
 import house1 from '../assets/img/apartmens/house1.jpg';
 import house2 from '../assets/img/apartmens/house2.jpg';
 import house1wiew1 from '../assets/img/apartmens/house1view/house1_view1.jpg';
@@ -13,25 +14,37 @@ import house2wiew4 from '../assets/img/apartmens/house2view/house2_view4.jpg';
 
 const HOUSE1_WIEW = [house1wiew1, house1wiew2, house1wiew3, house1wiew4, house1wiew5 ];
 const HOUSE2_WIEW = [house2wiew1, house2wiew2, house2wiew3, house2wiew4 ];
+const HOUSE_YELLOW = 'Дом №1 (желтый)';
+const HOUSE_YELLOW_DESCRIBE = 'Стоимость в сутки: 5000 руб. Животные +500 руб. к общей сумме(по договоренности)';
+const HOUSE_GREEN = 'Дом №2 (зеленый)';
+const HOUSE_GREEN_DESCRIBE = 'Стоимость в сутки: 5000 руб. Животные +500 руб. к общей сумме(по договоренности)';
 
 class Apartmens {
     constructor(modal) {
         this.apartmensContainer = document.getElementById('apartmens-container');
         this.modal = modal;
-        this.aparmenYellow = document.createElement('div');
-        this.aparmenYellowScreen = document.createElement('img');
-        this.aparmenYellowScreen.src = house1;
-        this.aparmenYellowScreen.alt = 'Дом №1';
-        this.aparmenYellow.appendChild(this.aparmenYellowScreen);
 
-        this.aparmenGreen = document.createElement('div');
-        this.aparmenGreenScreen = document.createElement('img');
-        this.aparmenGreenScreen.src = house2;
-        this.aparmenGreenScreen.alt = 'Дом №2';
-        this.aparmenGreen.appendChild(this.aparmenGreenScreen);
+        this.aparmenYellow = domUtils.addBlock(this.apartmensContainer, {class: 'apartment-section'})
 
-        this.apartmensContainer.appendChild(this.aparmenYellow);
-        this.apartmensContainer.appendChild(this.aparmenGreen);
+        domUtils.addTextBlock(HOUSE_YELLOW, this.aparmenYellow, {class: 'responsive-text'});
+        this.aparmenYellowScreen = domUtils.addImage(house1, this.aparmenYellow, {alt: 'Дом №1 (желтый)'});
+        domUtils.addTextBlock(HOUSE_YELLOW_DESCRIBE, this.aparmenYellow, {class: 'responsive-text'} );
+
+        this.aparmenGreen = domUtils.addBlock(this.apartmensContainer, {class: 'apartment-section'});
+
+        domUtils.addTextBlock(HOUSE_GREEN, this.aparmenGreen, {class: 'responsive-text'});
+        this.aparmenGreenScreen = domUtils.addImage(house2, this.aparmenGreen, {alt: 'Дом №2 (зеленый)'});
+        domUtils.addTextBlock(HOUSE_GREEN_DESCRIBE, this.aparmenGreen, {class: 'responsive-text'});
+
+        this.aparmenYellowScreen.addEventListener('click', () => {
+            this.modal.setModalContent(0, HOUSE1_WIEW);
+            this.modal.showModal();
+        });
+
+        this.aparmenGreenScreen.addEventListener('click', () => {
+            this.modal.setModalContent(0, HOUSE2_WIEW);
+            this.modal.showModal();
+        });
     }
 }
 

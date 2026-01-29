@@ -9,7 +9,7 @@
 
 html {
     font-family: "Rubik", sans-serif;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 body {
@@ -84,6 +84,7 @@ section[class*="main-info"] {
     border: solid 1px var(--green-color);
     border-radius: 6px;
     margin: 3rem 3rem 0;
+    padding: 0 1em;
     font-size: 1.5rem;
 }
 
@@ -219,5 +220,34 @@ button.icon {
 button.icon:focus-visible {
     outline: 2px solid #005fcc; /* или другой цвет по вашему дизайну */
     outline-offset: 2px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+div[class="apartment-section"] {
+    max-width: 800px;
+}
+
+@media (max-width: 768px) {
+    div[class="apartment-section"] {
+        max-width: 600px;
+    }
+
+    p[class="responsive-text"] {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 576px) {
+    div[class="apartment-section"] {
+        max-width: 450px;
+    }
+
+    p[class="responsive-text"] {
+        font-size: 16px;
+    }
 }
 

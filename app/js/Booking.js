@@ -1,0 +1,24 @@
+import * as domUtils  from './domUtils';
+import Accordion from './Accordion';
+
+class Booking {
+    constructor() {
+        this.bookingContainer = document.getElementById('booking-container');
+        this.accordion = new Accordion(this.bookingContainer);
+
+        this.bookingWrapper = domUtils.addBlock(this.bookingContainer, {class: 'booking-iframe-wrapper'});
+        this.bookingIframe = document.createElement('iframe');
+        this.bookingIframe.src = 'https://litepms.ru/widget/search?id=8483';
+        Object.assign(this.bookingIframe.style, {
+            width: '1px',
+            minWidth: '100%',
+            minHeight: '600px',
+            height: 'auto'
+        });
+
+        this.bookingWrapper.appendChild(this.bookingIframe);
+
+    }
+}
+
+export default Booking;
