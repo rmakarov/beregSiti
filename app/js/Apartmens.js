@@ -27,13 +27,13 @@ class Apartmens {
         this.aparmenYellow = domUtils.addBlock(this.apartmensContainer, {class: 'apartment-section'})
 
         domUtils.addTextBlock(HOUSE_YELLOW, this.aparmenYellow, {class: 'responsive-text'});
-        this.aparmenYellowScreen = domUtils.addImage(house1, this.aparmenYellow, {alt: 'Дом №1 (желтый)'});
+        this.aparmenYellowScreen = domUtils.addImage(house1, this.aparmenYellow, {alt: 'Дом №1 (желтый)', style: "cursor: pointer"});
         domUtils.addTextBlock(HOUSE_YELLOW_DESCRIBE, this.aparmenYellow, {class: 'responsive-text'} );
 
         this.aparmenGreen = domUtils.addBlock(this.apartmensContainer, {class: 'apartment-section'});
 
         domUtils.addTextBlock(HOUSE_GREEN, this.aparmenGreen, {class: 'responsive-text'});
-        this.aparmenGreenScreen = domUtils.addImage(house2, this.aparmenGreen, {alt: 'Дом №2 (зеленый)'});
+        this.aparmenGreenScreen = domUtils.addImage(house2, this.aparmenGreen, {alt: 'Дом №2 (зеленый)', style: "cursor: pointer"});
         domUtils.addTextBlock(HOUSE_GREEN_DESCRIBE, this.aparmenGreen, {class: 'responsive-text'});
 
         this.aparmenYellowScreen.addEventListener('click', () => {

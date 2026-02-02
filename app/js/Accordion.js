@@ -1,4 +1,4 @@
-import * as domUtils  from './domUtils';
+import * as domUtils from './domUtils';
 
 class Accordion {
     constructor(parent, content) {
@@ -6,7 +6,8 @@ class Accordion {
 
         this.accordionButton = domUtils.addButton('Забронировать', this.accordion, {class: 'accordion-button'});
         this.accordionButton.innerHTML = `
-          <div class="d-flex align-items-center justify-content-center w-100">
+          <div class="accordion-button-content d-flex align-items-center justify-content-center w-100">
+          <div>
             <svg id="booking_icon" enableBackground="new 0 0 512 512" viewBox="0 0 512 512" width="50" height="50" xmlns="http://www.w3.org/2000/svg"><g>
             <g>
               <path d="m458.797 7.5h-364.391l-13.915 9-8.5 16.5v147.4l7.5 14.601 19.245 10.89h226.43l6.158-4.278h33.333l2.669 4.278h91.47c19.256 0 35.01-15.755 35.01-35.01v-128.371c.001-19.255-15.754-35.01-35.009-35.01z" fill="#58bf93" style={{fill: "rgb(238, 40, 145)"}}></path>
@@ -21,19 +22,43 @@ class Accordion {
               </g>
           </g>
           </svg>
-            <p class="responsive-text"><b>&nbsp;&nbsp;Забронировать</b></p>
+            <h2 class="responsive-text">&nbsp;&nbsp;Забронировать</h2></div>
+            <svg class="chevron-icon" xmlns="http://www.w3.org/2000/svg" fill="#212529" viewBox="0 0 16 16" width="16" height="16">
+    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+  </svg>
           </div>
         `;
 
-        this.accordionButton.addEventListener('click', () => {});
-    }
+        this.accordionContent = domUtils.addBlock( this.accordion, {class: 'accordion-content'});
+        this.accordionContent.classList.add('collapsed');
+        this.accordionContent.appendChild(content);
 
-    showAccordionContent() {
+        this.accordionButton.addEventListener('click', () => {
+            const isCollapsed = this.accordionContent.classList.contains('collapsed');
 
-    }
+            if (isCollapsed) {
+                // Развернуть
+                this.accordionContent.style.maxHeight = '0px';
+                this.accordionContent.classList.remove('collapsed');
+                this.accordionContent.classList.add('expanded');
+                this.accordionButton.classList.remove('collapsed');
+                this.accordionButton.classList.add('expanded');
 
-    hideAccordionContent() {
-
+                // Запустить анимацию
+                setTimeout(() => {
+                    this.accordionContent.style.maxHeight = this.accordionContent.scrollHeight + 'px';
+                }, 10);
+            } else {
+                // Свернуть
+                this.accordionContent.style.maxHeight = '0px';
+                setTimeout(() => {
+                    this.accordionContent.classList.remove('expanded');
+                    this.accordionContent.classList.add('collapsed');
+                    this.accordionButton.classList.remove('expanded');
+                    this.accordionButton.classList.add('collapsed');
+                }, 400);
+            }
+        });
     }
 
 }

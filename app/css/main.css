@@ -8,14 +8,14 @@
 }
 
 @font-face {
-    font-family: 'Noto Sans';
+    font-family: 'Segoe UI';
     font-style: normal;
     font-weight: 400;
-    src: url('../assets/fonts/NotoSans-Regular.ttf') format('truetype');
+    src: url('../assets/fonts/Segoe UI.ttf') format('truetype');
 }
 
 html {
-    font-family: "Rubik", sans-serif;
+    font-family:  system-ui, -apple-system, "Segoe UI", Roboto, "Rubik";
     font-size: 16px;
 }
 
@@ -23,10 +23,15 @@ body {
     margin: 0;
     padding: 0;
     scrollbar-gutter: stable;
+    background-color: #fdfffa;
 }
 
 body.modal-open {
     overflow: hidden;
+}
+
+iframe {
+    border: 0;
 }
 
 header {
@@ -87,12 +92,89 @@ section[class*="main-info"] {
 }
 
 .section {
-    text-align: center;
     border: solid 1px var(--green-color);
     border-radius: 6px;
     margin: 3rem 3rem 0;
-    padding: 0 1em;
+    padding: 0 0.5rem;
     font-size: 1.5rem;
+    text-align: center !important;
+}
+.accordion {
+    background-color: #d1e7dd;
+    border-radius: 0.375rem;
+    border: solid 1px var(--green-color);
+    margin-bottom: 0.25em;
+}
+.accordion-button {
+    width: 100%;
+    padding: 1.5em;
+    background-color: #d1e7dd;
+    border-top-left-radius: 0.375rem;
+    border-top-right-radius: 0.375rem;
+    border: none;
+}
+.accordion-content {
+    padding: 0.5em;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out, opacity 0.3s ease;
+    max-height: 0;
+    opacity: 0;
+}
+.accordion-content.collapsed {
+    max-height: 0;
+    opacity: 0;
+    padding: 0;
+}
+.accordion-content.expanded {
+    max-height: 800px; /* достаточно большое значение */
+    opacity: 1;
+}
+.chevron-icon {
+    argin-left: 8px; flex-shrink: 0;
+}
+.accordion-button-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.accordion-button-content>div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* отступ между иконкой и текстом */
+    flex: 1;
+}
+
+button.accordion-button.collapsed:hover svg[id="booking_icon"] {
+    animation-name: booking;
+    animation-duration: 0.5s;
+    animation-iteration-count: 3;
+}
+@keyframes booking {
+    0% {
+        transform:  scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+
+    }
+    100% {
+        transform: scale(1);
+
+    }
+}
+
+.accordion-button-content svg.chevron-icon {
+    margin-left: auto;
+    flex-shrink: 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+button.accordion-button.expanded .accordion-button-content svg.chevron-icon {
+    transform: rotate(180deg);
 }
 
 .section:last-child {
@@ -109,12 +191,14 @@ section[class*="main-info"] {
     margin-bottom: 20px;
 }
 
-#apartmens-container {
+#apartmens-container, #boats-section {
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap; /* запрещаем перенос на новую строку */
     justify-content: space-around;
-    flex-wrap: wrap;
-    margin-left: 20px;
+    gap: 20px;
+    width: 100%;
+    overflow: hidden;
     margin-right: 20px;
     margin-bottom: 20px;
 }
@@ -235,25 +319,48 @@ img {
 }
 
 div[class="apartment-section"] {
-    max-width: 800px;
+    flex: 1; /* каждый блок занимает равную часть пространства */
+    min-width: 0; /* позволяет блоку сжиматься меньше своего содержимого */
+    box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
-    div[class="apartment-section"] {
-        max-width: 600px;
+
+    .section {
+        margin: 1.5rem 1.5rem 0;
     }
 
-    p[class="responsive-text"] {
+    h2[class="responsive-text"] {
+        font-size: 32px;
+    }
+
+    button.accordion-button h2[class="responsive-text"] {
+        font-size: 20px;
+    }
+
+    p[class="responsive-text"], .nav-link {
         font-size: 18px;
     }
 }
 
 @media (max-width: 576px) {
-    div[class="apartment-section"] {
-        max-width: 450px;
+    .nav {
+        padding: 0;
     }
 
-    p[class="responsive-text"] {
+    .section {
+        margin: 1rem 1rem 0;
+    }
+
+    h2[class="responsive-text"] {
+        font-size: 24px;
+    }
+
+    button.accordion-button h2[class="responsive-text"] {
+        font-size: 18px;
+    }
+
+    p[class="responsive-text"], .nav-link {
         font-size: 16px;
     }
 }

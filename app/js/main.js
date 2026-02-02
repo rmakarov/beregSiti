@@ -2,12 +2,14 @@ import '../css/main.css';
 import Modal from './Modal';
 import Gallery from './Gallery';
 import Apartmens from './Apartmens';
-import Booking from "./Booking";
+import Booking from './Booking';
+import Boats from './Boats';
 
 let modal = null;
 let galery = null;
 let apartmens = null;
 let booking = null;
+let boats = null;
 
 document.addEventListener('DOMContentLoaded', ready, false );
 
@@ -16,6 +18,7 @@ function ready() {
     galery = new Gallery(modal);
     apartmens = new Apartmens(modal);
     booking = new Booking();
+    boats = new Boats();
 
     const navLinks = document.getElementsByClassName('nav-link');
     for(const navLink of navLinks) {
