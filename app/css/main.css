@@ -139,7 +139,6 @@ section[class*="main-info"] {
     width: 100%;
 }
 
-
 .accordion-button-content>div{
     display: flex;
     align-items: center;
@@ -239,14 +238,25 @@ button.accordion-button.expanded .accordion-button-content svg.chevron-icon {
 }
 
 .modalContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 90vw;
-    max-height: 90vh;
-    overflow: auto;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
     z-index: 2;
+}
+
+.modalContent img {
+    max-width: 1200px;
+    width: 100%;
+    height: 100vh;
+    object-fit: contain;
+    object-position: center;
 }
 
 .modalControls {
@@ -292,7 +302,7 @@ button:not(:disabled) {
 }
 
 button:disabled {
-    opacity: 0.6;
+    opacity: 0.4;
     filter: blur(1px);
     pointer-events: none; /* гарантирует, что клики игнорируются */
     cursor: not-allowed;
@@ -341,6 +351,13 @@ div[class="apartment-section"] {
     p[class="responsive-text"], .nav-link {
         font-size: 18px;
     }
+
+    .modalControls svg,
+    .modalControlsLeft svg,
+    .modalControlsRight svg {
+        width: 75%;
+        height: 75%;
+    }
 }
 
 @media (max-width: 576px) {
@@ -363,5 +380,13 @@ div[class="apartment-section"] {
     p[class="responsive-text"], .nav-link {
         font-size: 16px;
     }
+
+    .modalControls svg,
+    .modalControlsLeft svg,
+    .modalControlsRight svg {
+        width: 50%;
+        height: 50%;
+    }
+
 }
 

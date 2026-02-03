@@ -10,22 +10,50 @@ let galery = null;
 let apartmens = null;
 let booking = null;
 let boats = null;
+let apartmentsData = null;
+let boatsData = null;
 
 document.addEventListener('DOMContentLoaded', ready, false );
 
 function ready() {
+    loadJsonFile('site.json')
+        .then(data => {
+            initApp(data.apartments, data.boats);
+        })
+        .catch(error => {
+            console.error('Failed to load:', error);
+        });
+}
+
+function initApp(apartmentsData, boatsData) {
     modal = new Modal();
     galery = new Gallery(modal);
-    apartmens = new Apartmens(modal);
+    apartmens = new Apartmens(modal, apartmentsData);
     booking = new Booking();
-    boats = new Boats();
+    boats = new Boats(boatsData);
 
     const navLinks = document.getElementsByClassName('nav-link');
-    for(const navLink of navLinks) {
+    for (const navLink of navLinks) {
         navLink.addEventListener('click', (e) => {
             const anchor = e.target.getAttribute('data-anchor');
             scrollToElement(anchor);
         });
+    }
+}
+
+async function loadJsonFile(filename) {
+    try {
+        const response = await fetch(`json/${filename}`);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error loading JSON file:', error);
+        throw error;
     }
 }
 

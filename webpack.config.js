@@ -56,6 +56,10 @@ module.exports = {
                 {
                     from: 'assets/favicon',
                     to: 'favicon'
+                },
+                {
+                    from: 'assets/json',
+                    to: 'json'
                 }
             ]
         }),

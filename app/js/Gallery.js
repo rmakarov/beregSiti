@@ -28,6 +28,28 @@ class Gallery {
     constructor(modal) {
         this.galleryContainer = document.getElementById('gallery-container');
         this.modal = modal;
+
+        this.getIconSize = () => {
+            const width = window.innerWidth;
+            if (width <= 576) {
+                return { width: GALLERY_ICON_WIDTH * 0.5, height: GALLERY_ICON_HEIGHT * 0.5 };
+            } else if (width <= 768) {
+                return { width: GALLERY_ICON_WIDTH * 0.75, height: GALLERY_ICON_HEIGHT * 0.75 };
+            }
+            return { width: GALLERY_ICON_WIDTH, height: GALLERY_ICON_HEIGHT };
+        };
+
+        // Функция для обновления размеров иконки
+        const updateIconSize = (img) => {
+            let initialWidth = img.width;
+            let initialHeight = img.height;
+            const { width: targetWidth, height: targetHeight } = this.getIconSize();
+            let scale = Math.min(targetWidth / initialWidth, targetHeight / initialHeight);
+
+            img.width = initialWidth * scale;
+            img.height = initialHeight * scale;
+        };
+
         VIEW_GALERY.forEach((imgName, index) => {
             const galleryWrapper = document.createElement('div');
             galleryWrapper.className = 'gallery-icon-wrapper';
@@ -36,19 +58,26 @@ class Gallery {
             galleryImg.alt = imgName;
 
             galleryImg.onload = (e) => {
-                let initialWidth = e.target.width;
-                let initialHeight = e.target.height;
-                let scale = Math.min(GALLERY_ICON_WIDTH/initialWidth, GALLERY_ICON_HEIGHT /initialHeight);
-
-                e.target.width = initialWidth * scale;
-                e.target.height = initialHeight * scale;
+                updateIconSize(e.target);
             };
+
             galleryImg.addEventListener('click', () => {
                 this.showGalleryItem(imgName, index);
             });
+
             galleryWrapper.append(galleryImg);
             this.galleryContainer.append(galleryWrapper);
         });
+
+        window.addEventListener('resize', () => {
+            const icons = this.galleryContainer.querySelectorAll('img');
+            icons.forEach(img => {
+                if (img.complete) {
+                    updateIconSize(img);
+                }
+            });
+        });
+
     }
 
     showGalleryItem(imgName, index) {
