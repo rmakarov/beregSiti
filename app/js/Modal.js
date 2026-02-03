@@ -8,9 +8,14 @@ let MODAL_CONTENT = DEFAULT_MODAL_CONTENT;
 class Modal {
     constructor () {
         this.modal = document.querySelector('.modal');
+        this.modalOverlay = document.querySelector('.modalOverlay');
         this.closeModalButton = document.querySelector('.modalCloseButton');
         this.modalPrevButton = document.querySelector('.modalPrevButton');
         this.modalNextButton = document.querySelector('.modalNextButton');
+
+        this.modalOverlay.addEventListener('click', (e) => {
+            this.closeModal();
+        });
 
         this.closeModalButton.addEventListener('click', () => {
             this.closeModal();

@@ -68,7 +68,7 @@ footer {
 .nav-link {
     cursor: pointer;
     font-size: 1.5rem;
-    padding: 0.5rem 1rem;
+    margin: 1rem;
 }
 
 section[class*="main-info"] {
@@ -78,12 +78,13 @@ section[class*="main-info"] {
     -webkit-background-size: 100% 100%;
     -moz-background-size: 100% 100%;
     -o-background-size: 100% 100%;
-    height: 400px;
     font-size: 2rem;
 }
 
-.main-info .main-info-header-container {
-    height: 100%;
+.main-info-header-container {
+    height: 400px;
+    padding-left: 3rem;
+    padding-right: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -130,7 +131,7 @@ section[class*="main-info"] {
     opacity: 1;
 }
 .chevron-icon {
-    argin-left: 8px; flex-shrink: 0;
+    margin-left: 8px; flex-shrink: 0;
 }
 .accordion-button-content {
     display: flex;
@@ -158,11 +159,9 @@ button.accordion-button.collapsed:hover svg[id="booking_icon"] {
     }
     50% {
         transform: scale(1.2);
-
     }
     100% {
         transform: scale(1);
-
     }
 }
 
@@ -221,8 +220,8 @@ button.accordion-button.expanded .accordion-button-content svg.chevron-icon {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
+    /*background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);*/
     display: flex; /* можно оставить, но не обязательно */
     justify-content: center;
     align-items: center;
@@ -230,6 +229,14 @@ button.accordion-button.expanded .accordion-button-content svg.chevron-icon {
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     z-index: 1100;
+}
+
+.modalOverlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 1;
 }
 
 .modal.active {
@@ -242,43 +249,39 @@ button.accordion-button.expanded .accordion-button-content svg.chevron-icon {
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100vw;
-    height: 100vh;
+    inset: 0;
+    pointer-events: none;
     overflow: hidden;
     z-index: 2;
 }
 
 .modalContent img {
-    max-width: 1200px;
-    width: 100%;
-    height: 100vh;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
     object-fit: contain;
     object-position: center;
+    pointer-events: auto;
 }
 
 .modalControls {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    right: 0;
     height: auto;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px;
     box-sizing: border-box;
     z-index: 4;
 }
 
 .modalControlsLeft {
     position: absolute;
-    top: 0;
     left: 0;
     width: 60px; /* или как нужно */
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -287,10 +290,8 @@ button.accordion-button.expanded .accordion-button-content svg.chevron-icon {
 
 .modalControlsRight {
     position: absolute;
-    top: 0;
     right: 0;
     width: 60px;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -340,8 +341,16 @@ div[class="apartment-section"] {
         margin: 1.5rem 1.5rem 0;
     }
 
+    .main-info-header-container {
+        height: 300px;
+    }
+
     h2[class="responsive-text"] {
         font-size: 32px;
+    }
+
+    h3[class="responsive-text"] {
+        font-size: 22px;
     }
 
     button.accordion-button h2[class="responsive-text"] {
@@ -369,8 +378,16 @@ div[class="apartment-section"] {
         margin: 1rem 1rem 0;
     }
 
+    .main-info-header-container {
+        height: 250px;
+    }
+
     h2[class="responsive-text"] {
         font-size: 24px;
+    }
+
+    h3[class="responsive-text"] {
+        font-size: 18px;
     }
 
     button.accordion-button h2[class="responsive-text"] {
@@ -387,6 +404,4 @@ div[class="apartment-section"] {
         width: 50%;
         height: 50%;
     }
-
 }
-

@@ -9,9 +9,6 @@ const DEFAULT_BOTIK1_PRICE = 'Стоимость прогулки на лодк�
 
 class Boats {
     constructor(boatsData) {
-        console.log('boatsData?.boat1?.price: ', boatsData?.boat1?.price);
-        console.log('boatsData?.boat2?.price: ', boatsData?.boat2?.price);
-        console.log('boatsData?.botik?.price: ', boatsData?.botik?.price);
         const BOAT1_PRICE = boatsData?.boat1?.price || DEFAULT_BOAT1_PRICE;
         const BOAT2_PRICE = boatsData?.boat2?.price || DEFAULT_BOAT2_PRICE;
         const BOTIK1_PRICE = boatsData?.botik1?.price || DEFAULT_BOTIK1_PRICE;
