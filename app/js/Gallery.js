@@ -55,7 +55,7 @@ class Gallery {
             galleryWrapper.className = 'gallery-icon-wrapper';
             const galleryImg = document.createElement('img');
             galleryImg.src = imgName;
-            galleryImg.alt = imgName;
+            galleryImg.alt = `Иконка галереи ${index+1}`;
 
             galleryImg.onload = (e) => {
                 updateIconSize(e.target);
