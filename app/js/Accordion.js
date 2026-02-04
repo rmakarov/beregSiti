@@ -38,25 +38,27 @@ class Accordion {
 
             if (isCollapsed) {
                 // Развернуть
-                this.accordionContent.style.maxHeight = '0px';
                 this.accordionContent.classList.remove('collapsed');
                 this.accordionContent.classList.add('expanded');
                 this.accordionButton.classList.remove('collapsed');
                 this.accordionButton.classList.add('expanded');
 
-                // Запустить анимацию
-                setTimeout(() => {
-                    this.accordionContent.style.maxHeight = this.accordionContent.scrollHeight + 'px';
-                }, 10);
+                // Принудительно пересчитать высоту
+                const height = this.accordionContent.scrollHeight + 'px';
+                this.accordionContent.style.maxHeight = height;
             } else {
                 // Свернуть
                 this.accordionContent.style.maxHeight = '0px';
-                setTimeout(() => {
+
+                // Используем {once: true} для автоматического удаления обработчика
+                const handleTransitionEnd = () => {
                     this.accordionContent.classList.remove('expanded');
                     this.accordionContent.classList.add('collapsed');
                     this.accordionButton.classList.remove('expanded');
                     this.accordionButton.classList.add('collapsed');
-                }, 400);
+                };
+
+                this.accordionContent.addEventListener('transitionend', handleTransitionEnd, {once: true});
             }
         });
     }
